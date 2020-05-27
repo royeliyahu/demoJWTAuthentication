@@ -3,6 +3,7 @@ package com.example.demoJWT;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.impl.DefaultClaims;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +30,7 @@ public class JwtUtil {
     }
 
     public Claims extractAllClaims(String token){
-        return Jwts.parser().setSigningKey(SECRETKEY).parseClaimsJwt(token).getBody();
+        return Jwts.parser().setSigningKey(SECRETKEY).parseClaimsJws(token).getBody();
     }
 
     public boolean isTokenExpired(String token){
